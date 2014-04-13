@@ -1,9 +1,4 @@
 class Game
-  def initialize width, height
-    @width = width
-    @height = height
-  end
-
   def step old
     new = old.new_of_same_size
     old.cells { | x, y |

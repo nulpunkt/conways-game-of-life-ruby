@@ -8,7 +8,7 @@ describe Game do
     start.alive! 2, 1
     start.alive! 2, 2
 
-    game = Game.new 5, 5
+    game = Game.new
 
     game.step(start).should be_eq start
   end
@@ -24,7 +24,7 @@ describe Game do
     expected.alive! 2, 2
     expected.alive! 3, 2
 
-    game = Game.new 5, 5
+    game = Game.new
 
     game.step(start).should be_eq expected
   end
