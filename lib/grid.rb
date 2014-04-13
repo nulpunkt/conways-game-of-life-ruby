@@ -1,5 +1,7 @@
 class Grid
-  def initialize
+  def initialize width, height
+    @width = width
+    @height = height
     @grid = {}
     @grid.default = false
   end
@@ -18,6 +20,18 @@ class Grid
 
   def alive! x, y
     @grid[{x: x, y: y}] = true
+  end
+
+  def cells
+    for i in 0..@width-1 do
+      for j in 0..@height-1 do
+        yield i, j
+      end
+    end
+  end
+
+  def new_of_same_size
+    Grid.new @width, @height
   end
 
   def eq? other

@@ -2,7 +2,7 @@ require './lib/grid'
 
 describe Grid do
   before(:each) do
-    @g = Grid.new
+    @g = Grid.new 5, 5
   end
 
   it "starts with dead cells" do
@@ -29,21 +29,25 @@ describe Grid do
   end
 
   it "can be compared, when equal" do
-    g1 = Grid.new
+    g1 = Grid.new 5, 5
     g1.alive! 3, 1
-    g2 = Grid.new
+    g2 = Grid.new 5, 5
     g2.alive! 3, 1
 
     g1.should be_eq g2
   end
 
   it "can be compared, when not equal" do
-    g1 = Grid.new
+    g1 = Grid.new 5, 5 
     g1.alive! 3, 1
-    g2 = Grid.new
+    g2 = Grid.new 5, 5
     g2.alive! 3, 1
     g2.alive! 3, 3
 
     g1.should_not be_eq g2
+  end
+
+  it "can create a new of same size" do
+    @g.new_of_same_size.should be_eq @g
   end
 end

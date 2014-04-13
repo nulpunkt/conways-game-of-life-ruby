@@ -5,9 +5,10 @@ class Game
   end
 
   def step old
-    new = Grid.new
-    cells { | x, y |
+    new = old.new_of_same_size
+    old.cells { | x, y |
       alive_neighbours = old.alive_neighbours(x, y)
+
       if old.alive?(x, y) and alive_neighbours == 2 then
         new.alive! x, y
       end
@@ -17,15 +18,5 @@ class Game
       end
     }
     new
-  end
-
-  private
-
-  def cells
-    for i in 0..@width-1 do
-      for j in 0..@height-1 do
-        yield i, j
-      end
-    end
   end
 end
