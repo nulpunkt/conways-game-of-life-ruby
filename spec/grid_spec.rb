@@ -1,0 +1,30 @@
+require './lib/grid'
+
+describe Grid do
+  before(:each) do
+    @g = Grid.new
+  end
+
+  it "starts with dead cells" do
+    @g.alive?(3, 3).should be_false
+    @g.alive?(7, 3).should be_false
+    @g.alive?(3, 7).should be_false
+  end
+
+  it "knows if a cell is alive" do
+    @g.alive!(3, 3)
+    @g.alive?(3, 3).should be_true
+    @g.alive?(2, 3).should be_false
+  end
+
+  it "it can have no alive neighbours" do
+    @g.alive_neighbours(3, 3).should be 0
+  end
+
+  it "it can have alive neighbours" do
+    @g.alive!(4, 3)
+    @g.alive!(3, 4)
+    @g.alive!(3, 3)
+    @g.alive_neighbours(3, 3).should be 2
+  end
+end
