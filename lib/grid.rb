@@ -21,12 +21,7 @@ class Grid
   end
 
   def eq? other
-    for key in @grid.keys + other.grid.keys do
-      if alive?(key[:x], key[:y]) != other.alive?(key[:x], key[:y]) then
-        return false
-      end
-    end
-    true
+    @grid == other.grid
   end
   alias_method :==, :eql?
 
