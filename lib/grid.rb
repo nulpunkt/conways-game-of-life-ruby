@@ -13,11 +13,25 @@ class Grid
   end
 
   def alive? x, y
-    @grid[[x,y]]
+    @grid[{x: x, y: y}]
   end
 
   def alive! x, y
-    @grid[[x,y]] = true
+    @grid[{x: x, y: y}] = true
+  end
+
+  def eq? other
+    for key in @grid.keys + other.grid.keys do
+      if alive?(key[:x], key[:y]) != other.alive?(key[:x], key[:y]) then
+        return false
+      end
+    end
+    true
+  end
+  alias_method :==, :eql?
+
+  def grid
+    @grid
   end
 
   private

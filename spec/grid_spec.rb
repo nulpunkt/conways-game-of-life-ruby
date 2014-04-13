@@ -27,4 +27,23 @@ describe Grid do
     @g.alive!(3, 3)
     @g.alive_neighbours(3, 3).should be 2
   end
+
+  it "can be compared, when equal" do
+    g1 = Grid.new
+    g1.alive! 3, 1
+    g2 = Grid.new
+    g2.alive! 3, 1
+
+    g1.should be_eq g2
+  end
+
+  it "can be compared, when not equal" do
+    g1 = Grid.new
+    g1.alive! 3, 1
+    g2 = Grid.new
+    g2.alive! 3, 1
+    g2.alive! 3, 3
+
+    g1.should_not be_eq g2
+  end
 end
